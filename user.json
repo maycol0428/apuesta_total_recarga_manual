@@ -1,0 +1,29 @@
+[
+  {
+    "_id": "6251ee85aa15e1aaf6e86333",
+    "playerId": "user1",
+    "password": "12345678",
+    "role": "user",
+    "balance": 5132
+  },
+  {
+    "_id": "6251ee85aa15e1aaf6e86334",
+    "playerId": "user2",
+    "password": "12345678",
+    "role": "user",
+    "balance": 6048
+  },
+  {
+    "_id": "6251ee85aa15e1aaf6e86335",
+    "playerId": "user3",
+    "password": "12345678",
+    "role": "user",
+    "balance": 1532
+  },
+  {
+    "_id": "6251ee85aa15e1aaf6e86336",
+    "playerId": "promoter",
+    "password": "12345678",
+    "role": "promoter"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "playerId": "user1",
+    "promoterId": "6251ee85aa15e1aaf6e86336",
+    "amount": "2119",
+    "socialMedia": "whatsapp",
+    "opNumber": "4324234",
+    "paymentMethod": "bcp"
+  },
+  {
+    "playerId": "user1",
+    "promoterId": "6251ee85aa15e1aaf6e86336",
+    "amount": "3013",
+    "socialMedia": "whatsapp",
+    "opNumber": "4324312234",
+    "paymentMethod": "interbank"
+  },
+  {
+    "playerId": "user2",
+    "promoterId": "6251ee85aa15e1aaf6e86336",
+    "amount": "5016",
+    "socialMedia": "whatsapp",
+    "opNumber": "4323214234",
+    "paymentMethod": "bcp"
+  },
+  {
+    "playerId": "user2",
+    "promoterId": "6251ee85aa15e1aaf6e86336",
+    "amount": "1032",
+    "socialMedia": "whatsapp",
+    "opNumber": "4324321234",
+    "paymentMethod": "interbank"
+  },
+  {
+    "playerId": "user3",
+    "promoterId": "6251ee85aa15e1aaf6e86336",
+    "amount": "1532",
+    "socialMedia": "telegram",
+    "opNumber": "432434321234",
+    "paymentMethod": "interbank"
+  }
+]
