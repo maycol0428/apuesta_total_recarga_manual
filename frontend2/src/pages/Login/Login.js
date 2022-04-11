@@ -84,7 +84,7 @@ const Login = () => {
       body: JSON.stringify(loginOBJ),
     }).then(async (res) => {
       const json = await res.json();
-      dispath(setUser(json.user));
+      dispath(setUser({ user: json.user, accessToken: json.accessToken }));
       nav("/");
     });
   };

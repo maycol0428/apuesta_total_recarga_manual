@@ -15,4 +15,4 @@ const rechargeSchema = new Schema(
 );
 rechargeSchema.index({ paymentMethod: 1, opNumber: 1 }, { unique: true });
 
-module.exports = mongoose.model("Recharge", rechargeSchema);
+module.exports = mongoose.model.Recharge || mongoose.model("Recharge", rechargeSchema);

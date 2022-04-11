@@ -3,7 +3,7 @@ import hexAlpha from "hex-alpha";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addRechargePromoter, rechargePromoterSelector, setRecharge, setRecharges } from "state/features/RechargePromoterSlice";
-import { userSelector } from "state/features/UserSlice";
+import { accessTokenSelector, userSelector } from "state/features/UserSlice";
 import styled from "styled-components";
 
 const RechargeListStyled = styled.div`
@@ -45,11 +45,16 @@ const RechargeListStyled = styled.div`
 const RechargeList = () => {
   const listRecharge = useSelector(rechargePromoterSelector);
   const currentUser = useSelector(userSelector);
+  const accessToken = useSelector(accessTokenSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (currentUser) {
-      fetch(`http://192.168.1.36:8000/api/v1/recharges/${currentUser?._id}`).then(async (res) => {
+      fetch(`http://192.168.1.36:8000/api/v1/recharges/${currentUser?._id}`, {
+        headers: {
+          "access-token": accessToken,
+        },
+      }).then(async (res) => {
         const json = await res.json();
         dispatch(setRecharges(json.recharges));
       });

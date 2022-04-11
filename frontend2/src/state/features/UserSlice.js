@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: null,
+  accessToken: null,
 };
 
 export const userSlice = createSlice({
@@ -19,7 +20,8 @@ export const userSlice = createSlice({
     },
 
     setUser: (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload.user;
+      state.accessToken = action.payload.accessToken;
     },
   },
 });
@@ -27,5 +29,6 @@ export const userSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { setUser } = userSlice.actions;
 export const userSelector = (state) => state.user.user;
+export const accessTokenSelector = (state) => state.user.accessToken;
 
 export default userSlice.reducer;

@@ -20,5 +20,6 @@ export const login = catchAsyncErrors(async (req, res, next) => {
 
   let { password: removePassword, ...rest } = user._doc;
 
-  res.status(200).json({ success: true, user: rest });
+  let tokenFake = Date.now() + 3600000 * 24;
+  res.status(200).json({ success: true, user: rest, accessToken: tokenFake });
 });
