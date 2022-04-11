@@ -34,7 +34,7 @@ export const rechargeUpdate = catchAsyncErrors(async (req, res, next) => {
 export const rechargeGetAll = catchAsyncErrors(async (req, res, next) => {
   const { promoterId } = req.params;
   // checking if user has given password and email both
-  const recharges = await Recharge.find({ promoterId });
+  const recharges = await Recharge.find({ promoterId }).sort({ createdAt: -1 });
 
   res.status(200).json({ success: true, recharges });
 });

@@ -4,7 +4,7 @@ const validator = require("validator");
 
 const rechargeSchema = new Schema(
   {
-    playerId: { type: "string" },
+    playerId: { type: "string", required: true },
     promoterId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     amount: { type: Number, required: true },
     socialMedia: { type: String, enum: ["whatsapp", "telegram"], required: true },
@@ -13,4 +13,5 @@ const rechargeSchema = new Schema(
   },
   { timestamps: true }
 );
+rechargeSchema.index({ paymentMethod: 1, opNumber: 1 }, { unique: true });
 module.exports = mongoose.model("Recharge", rechargeSchema);
