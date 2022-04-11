@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useNavigationType } from "react-router-dom";
 import { promoterSelector } from "state/features/PromoterSlice";
@@ -28,6 +28,29 @@ const DashBoardStyled = styled.div`
         flex-direction: column;
         font-size: 1.5rem;
         gap: 0.5rem;
+        .errorMsg {
+          margin: auto;
+          color: red;
+          font-weight: 600;
+          font-size: 1.6rem;
+          animation-name: remove;
+          animation-duration: 0.5s;
+          animation-iteration-count: 1;
+          animation-timing-function: linear;
+          animation-fill-mode: forwards;
+          @keyframes remove {
+            from {
+              transform: translateY(0.5rem);
+              opacity: 0;
+            }
+            50% {
+              transform: translateY(0);
+            }
+            to {
+              opacity: 1;
+            }
+          }
+        }
         input {
           border-radius: 1rem;
           padding: 0.5rem;
@@ -68,6 +91,7 @@ const DashBoard = () => {
   const currentPromoter = useSelector(userSelector);
   const rechargeOne = useSelector(rechargeOnePromoterSelector);
   const nav = useNavigate();
+  const [errorMsg, setErrorMsg] = useState("");
   useEffect(() => {
     if (!currentPromoter) {
       nav("/");
@@ -81,12 +105,30 @@ const DashBoard = () => {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(loginOBJ),
-    }).then(async (res) => {
-      const json = await res.json();
-      console.log(json);
-      dispatch(addRechargePromoter(json.recharge));
-    });
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        if (!json.success) {
+          // eslint-disable-next-line no-throw-literal
+          throw json;
+        }
+        dispatch(addRechargePromoter(json.recharge));
+      })
+      // eslint-disable-next-line node/handle-callback-err
+      .catch((err) => {
+        setErrorMsg("Ocurrio un error");
+      });
   };
+  useEffect(() => {
+    if (errorMsg) {
+      setTimeout(() => {
+        setErrorMsg("");
+      }, 3000);
+    }
+  }, [errorMsg]);
+
   return (
     <DashBoardStyled className="page">
       <div className="page__wrapper">
@@ -111,6 +153,7 @@ const DashBoard = () => {
               <option value={"interbank"}>INTERBANK</option>
               <option value={"yape"}>YAPE</option>
             </select>
+            {errorMsg && <p className="errorMsg">{errorMsg}</p>}
             <button onClick={handleOnSubmit}>Enviar</button>
           </div>
         </form>
